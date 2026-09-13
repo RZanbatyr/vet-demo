@@ -80,7 +80,7 @@ export default function ScrollWorldHero({
     mountScrollWorld(el, {
       brand: null,
       hint,
-      diveScroll: 0.85,
+      diveScroll: 1.0,
       nav: false,
       // розовый градиент и летающие точки движка чужие белому сайту
       atmosphere: false,

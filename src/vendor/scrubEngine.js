@@ -250,7 +250,10 @@ function mountScrollWorld(container, config) {
     const mobile = isMobile();
     for (let i = 0; i < NSEG; i++) {
       const s = SEGMENTS[i];
-      const near = y > s.start - 1.6 * vh && y < s.end + 1.6 * vh;
+      // Десктоп: клипы тянем заранее по цепочке (следующий после готовности предыдущего),
+      // чтобы при прокрутке не было стоп-кадров вместо видео. Телефон: как было, по близости.
+      const near = mobile ? (y > s.start - 1.6 * vh && y < s.end + 1.6 * vh)
+                          : (i === 0 || (SEGMENTS[i - 1].hasClip && SEGMENTS[i - 1].ready));
       // Wider hysteresis on unload than load, so a slow scroll near the seam
       // can't ping-pong between fetch and revoke. Desktop keeps everything
       // resident — the freeze we're fighting is a phone-decoder problem.
@@ -309,7 +312,7 @@ function mountScrollWorld(container, config) {
       // cur keeps lerping, so we snap to the latest target the moment it's free.
       if (s.video.seeking) continue;
       if (!s.visible && Math.abs(s.cur - s.target) < 0.002) continue;
-      s.cur += (s.target - s.cur) * (reduce ? 1 : 0.18);
+      s.cur += (s.target - s.cur) * (reduce ? 1 : 0.3);
       const dur = s.video.duration || 1;
       const t = clamp(s.cur, 0, 0.999) * dur;
       if (Math.abs(s.video.currentTime - t) > eps) { try { s.video.currentTime = t; } catch (e) {} }

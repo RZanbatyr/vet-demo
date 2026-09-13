@@ -13,7 +13,8 @@ import { clinic } from "../content";
 
 const FONT = "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const MIN_MS = 400;
-const MAX_MS = 4000;
+const MAX_MS = 2500;
+const POSTER_OK_MS = 1200; // после этого срока хватит и постера
 
 export default function HeroLoader() {
   const [hidden, setHidden] = useState(false);
@@ -37,10 +38,10 @@ export default function HeroLoader() {
 
     let listening = false;
     const check = () => {
-      // Постер первой сцены уже на экране - пустоты нет, лоадер можно убирать,
-      // видео доедет следом и плавно заменит кадр. Иначе ждём первый кадр клипа.
+      // Ждём первый кадр клипа, чтобы полёт начался сразу с видео. Если клип едет
+      // дольше POSTER_OK_MS, отпускаем по постеру, а не держим человека на белом экране.
       const img = document.querySelector<HTMLImageElement>(".sw-scene img");
-      if (img && img.complete && img.naturalWidth > 0) {
+      if (img && img.complete && img.naturalWidth > 0 && performance.now() - mountedAt > POSTER_OK_MS) {
         finish();
         return;
       }
