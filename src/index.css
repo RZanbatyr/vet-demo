@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    /* min-height, не height: иначе скроллером становится body и видео героя не перематывается */
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fff;
+    color: #111;
+  }
+  /* Safari красит текст кнопок синим без этого */
+  button { color: inherit; appearance: none; -webkit-appearance: none; }
+  /* Tailwind ставит video height:auto и ломает cover в герое */
+  .sw-root video { width: 100%; height: 100%; object-fit: cover; }
+  /* Пока идёт полёт по клинике, у героя своя кнопка: нижнюю липкую прячем */
+  body.hero-flight .m-cta { display: none; }
+}
