@@ -762,12 +762,16 @@ function Footer({ c }: { c: Content }) {
           </div>
           <p className="text-sm font-medium mt-3">{c.clinic.tagline}</p>
           <div className="flex gap-2 mt-5">
-            <a href={c.clinic.instagram} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Instagram">
-              <InstagramIcon />
-            </a>
-            <a href={c.clinic.telegram} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Telegram">
-              <TelegramIcon />
-            </a>
+            {c.clinic.instagram && (
+              <a href={c.clinic.instagram} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Instagram">
+                <InstagramIcon />
+              </a>
+            )}
+            {c.clinic.telegram && (
+              <a href={c.clinic.telegram} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Telegram">
+                <TelegramIcon />
+              </a>
+            )}
             <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="WhatsApp">
               <WhatsAppIcon />
             </a>
@@ -790,9 +794,14 @@ function Footer({ c }: { c: Content }) {
           </a>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-between gap-2 px-2 pt-4 text-xs text-neutral-500">
-        <span>{c.footer.about}</span>
+      <div className="mt-1.5 md:mt-2 rounded-xl md:rounded-2xl border border-dashed border-black/25 px-4 py-3 md:px-6 md:py-4 flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs md:text-sm text-neutral-700">
         <span>{c.ui.demoNote}</span>
+        <a href={c.ui.demoByHref} target="_blank" rel="noreferrer" className="font-semibold text-black underline underline-offset-4 whitespace-nowrap">
+          {c.ui.demoBy}
+        </a>
+      </div>
+      <div className="px-2 pt-3 text-xs text-neutral-500">
+        <span>{c.footer.about}</span>
       </div>
     </footer>
   );
@@ -807,12 +816,16 @@ function Floating({ c, onBook }: { c: Content; onBook: () => void }) {
         <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
           <WhatsAppIcon />
         </a>
-        <a href={c.clinic.telegram} target="_blank" rel="noreferrer" aria-label="Telegram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#2AABEE] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-          <TelegramIcon />
-        </a>
-        <a href={c.clinic.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#E1306C] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-          <InstagramIcon />
-        </a>
+        {c.clinic.telegram && (
+          <a href={c.clinic.telegram} target="_blank" rel="noreferrer" aria-label="Telegram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#2AABEE] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+            <TelegramIcon />
+          </a>
+        )}
+        {c.clinic.instagram && (
+          <a href={c.clinic.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#E1306C] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+            <InstagramIcon />
+          </a>
+        )}
       </div>
       <div className="m-cta md:hidden fixed left-3 right-3 bottom-3 z-40">
         <button onClick={onBook} className="w-full py-4 bg-black rounded-full text-white text-sm font-bold shadow-xl">
@@ -856,6 +869,9 @@ function BookingModal({ c, open, service, onClose }: { c: Content; open: boolean
           <div className="py-8 text-center">
             <h3 className="text-3xl font-bold">{c.booking.thanksTitle}</h3>
             <p className="text-neutral-700 mt-3">{c.booking.thanks}</p>
+            <a href={c.ui.demoByHref} target="_blank" rel="noreferrer" className="inline-block mt-4 text-sm font-semibold underline underline-offset-4">
+              {c.ui.demoBy}
+            </a>
             <button onClick={onClose} className="mt-6 px-6 py-3 bg-black rounded-full text-white text-sm font-semibold">
               {c.ui.close}
             </button>
