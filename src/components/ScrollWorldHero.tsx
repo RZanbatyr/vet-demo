@@ -151,13 +151,15 @@ export default function ScrollWorldHero({
     <>
       <style>{`
         .sw-root .sw-btn--primary {
-          background:#111111; color:#FFFFFF; font-weight:600;
+          background:linear-gradient(180deg,#3d3d3d 0%,#171717 55%,#090909 100%); color:#FFFFFF; font-weight:600;
           border-radius:9999px;
           padding:12px 12px 12px 22px;
           display:inline-flex; align-items:center; gap:14px;
-          transition:transform .15s ease, background .15s ease;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -2px 0 rgba(0,0,0,.65), 0 6px 14px rgba(0,0,0,.28), 0 2px 4px rgba(0,0,0,.18);
+          transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
         }
-        .sw-root .sw-btn--primary:hover { background:#000; transform:translateY(-1px); }
+        .sw-root .sw-btn--primary:hover { filter:brightness(1.1); transform:translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 0 rgba(0,0,0,.65), 0 12px 24px rgba(0,0,0,.32), 0 3px 6px rgba(0,0,0,.18); }
+        .sw-root .sw-btn--primary:active { transform:translateY(1px); box-shadow: inset 0 3px 8px rgba(0,0,0,.7); }
         .sw-root .sw-btn--primary::after {
           content:""; display:inline-block;
           width:34px; height:34px; border-radius:9999px;

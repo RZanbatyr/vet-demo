@@ -10,6 +10,7 @@ const SECTION2_IMAGE = `${BASE}img/section2.webp`;
 const SECTION3_IMG1 = `${BASE}img/s3img1.webp`;
 const SECTION3_IMG2 = `${BASE}img/s3img2.webp`;
 const SECTION3_BG = `${BASE}img/s3bg.webp`;
+const WA_3D = `${BASE}img/wa-3d.webp`;
 
 // ------------------------------------------------------------------ hooks
 
@@ -268,7 +269,7 @@ function Navbar({
           </button>
           <button
             onClick={onBook}
-            className="px-6 py-3 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
+            className="px-6 py-3 btn3d btn3d-dark rounded-full text-white text-sm font-semibold"
           >
             {c.ui.book}
           </button>
@@ -346,7 +347,7 @@ function Navbar({
                   setOpen(false);
                   onBook();
                 }}
-                className="w-full px-6 py-4 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
+                className="w-full px-6 py-4 btn3d btn3d-dark rounded-full text-white text-sm font-semibold"
               >
                 {c.ui.bookFree}
               </button>
@@ -470,7 +471,7 @@ function GalleryMosaic({ c }: { c: Content }) {
           </p>
           <a
             href={c.clinic.phoneHref}
-            className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold z-10 hover:scale-105 transition-transform"
+            className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 btn3d btn3d-light rounded-full text-black text-base md:text-xl font-bold z-10"
           >
             {c.gallery.button}
           </a>
@@ -586,7 +587,7 @@ function ImplantSection({ c, onBook }: { c: Content; onBook: () => void }) {
             </div>
             <button
               onClick={onBook}
-              className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform whitespace-nowrap"
+              className="px-5 py-3 md:px-8 md:py-5 btn3d btn3d-light rounded-full text-black text-base md:text-xl font-bold whitespace-nowrap"
             >
               {c.implant.button}
             </button>
@@ -715,7 +716,7 @@ function PricesSection({ c, onBook }: { c: Content; onBook: () => void }) {
             <p className="text-sm md:text-base text-white/75 mt-4 max-w-md">{c.prices.sub}</p>
           </div>
           <div className="mt-8">
-            <button onClick={onBook} className="w-full md:w-auto px-6 py-4 bg-white rounded-full text-black text-sm md:text-base font-bold hover:scale-105 transition-transform">
+            <button onClick={onBook} className="w-full md:w-auto px-6 py-4 btn3d btn3d-light rounded-full text-black text-sm md:text-base font-bold">
               {c.prices.cta}
             </button>
             <p className="text-xs text-white/60 mt-3">{c.prices.note}</p>
@@ -752,7 +753,7 @@ function PricesSection({ c, onBook }: { c: Content; onBook: () => void }) {
 
 function Footer({ c }: { c: Content }) {
   return (
-    <footer id="contacts" className="w-full px-3 md:px-5 pt-6 md:pt-8 pb-24 md:pb-8 scroll-mt-20 md:scroll-mt-24">
+    <footer id="contacts" className="w-full px-3 md:px-5 pt-6 md:pt-8 pb-24 md:pb-28 scroll-mt-20 md:scroll-mt-24">
       <div className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <div className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight leading-none">
@@ -772,8 +773,8 @@ function Footer({ c }: { c: Content }) {
                 <TelegramIcon />
               </a>
             )}
-            <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="WhatsApp">
-              <WhatsAppIcon />
+            <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" className="group block" aria-label="WhatsApp">
+              <img src={WA_3D} alt="" className="w-20 h-20 drop-shadow-[0_10px_18px_rgba(37,211,102,0.35)] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </div>
@@ -789,7 +790,7 @@ function Footer({ c }: { c: Content }) {
           <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3">{c.footer.find}</p>
           <p className="text-sm md:text-base">{c.clinic.landmark}</p>
           <p className="text-sm md:text-base mt-4 font-semibold">{c.footer.guarantee}</p>
-          <a href={c.clinic.phoneHref} className="inline-block mt-5 px-6 py-3 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors">
+          <a href={c.clinic.phoneHref} className="inline-block mt-5 px-6 py-3 btn3d btn3d-dark rounded-full text-white text-sm font-semibold">
             {c.ui.call}
           </a>
         </div>
@@ -813,8 +814,8 @@ function Floating({ c, onBook }: { c: Content; onBook: () => void }) {
   return (
     <>
       <div className="fixed right-3 md:right-5 bottom-20 md:bottom-6 z-40 flex flex-col gap-2">
-        <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-          <WhatsAppIcon />
+        <a href={c.clinic.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="block w-14 h-14 md:w-[76px] md:h-[76px] transition-transform duration-300 hover:scale-110">
+          <img src={WA_3D} alt="" className="w-full h-full drop-shadow-[0_12px_20px_rgba(37,211,102,0.4)]" />
         </a>
         {c.clinic.telegram && (
           <a href={c.clinic.telegram} target="_blank" rel="noreferrer" aria-label="Telegram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#2AABEE] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
@@ -828,7 +829,7 @@ function Floating({ c, onBook }: { c: Content; onBook: () => void }) {
         )}
       </div>
       <div className="m-cta md:hidden fixed left-3 right-3 bottom-3 z-40">
-        <button onClick={onBook} className="w-full py-4 bg-black rounded-full text-white text-sm font-bold shadow-xl">
+        <button onClick={onBook} className="w-full py-4 btn3d btn3d-dark rounded-full text-white text-sm font-bold">
           {c.ui.bookFree}
         </button>
       </div>
@@ -872,7 +873,7 @@ function BookingModal({ c, open, service, onClose }: { c: Content; open: boolean
             <a href={c.ui.demoByHref} target="_blank" rel="noreferrer" className="inline-block mt-4 text-sm font-semibold underline underline-offset-4">
               {c.ui.demoBy}
             </a>
-            <button onClick={onClose} className="mt-6 px-6 py-3 bg-black rounded-full text-white text-sm font-semibold">
+            <button onClick={onClose} className="mt-6 px-6 py-3 btn3d btn3d-dark rounded-full text-white text-sm font-semibold">
               {c.ui.close}
             </button>
           </div>
@@ -897,7 +898,7 @@ function BookingModal({ c, open, service, onClose }: { c: Content; open: boolean
               ))}
             </select>
             <textarea name="comment" rows={2} placeholder={c.booking.comment} className="w-full px-4 py-3 rounded-xl border border-black/15 bg-stone-50 outline-none focus:border-black resize-none" />
-            <button type="submit" className="w-full py-4 bg-black rounded-full text-white text-sm font-bold hover:bg-neutral-800 transition-colors mt-1">
+            <button type="submit" className="w-full py-4 btn3d btn3d-dark rounded-full text-white text-sm font-bold mt-1">
               {c.booking.submit}
             </button>
             <p className="text-[11px] text-neutral-500 text-center">{c.booking.privacy}</p>
@@ -928,7 +929,7 @@ function ServicePageView({ c, page, onBook }: { c: Content; page: ServicePage; o
           <h1 className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[0.95]">{page.title}</h1>
           <p className="text-base md:text-lg text-neutral-700 mt-6 max-w-xl">{page.intro}</p>
           <div className="mt-8">
-            <button onClick={() => onBook(page.slug)} className="px-6 py-4 bg-black rounded-full text-white text-sm md:text-base font-bold hover:bg-neutral-800 transition-colors">
+            <button onClick={() => onBook(page.slug)} className="px-6 py-4 btn3d btn3d-dark rounded-full text-white text-sm md:text-base font-bold">
               {c.ui.bookFree}
             </button>
           </div>
